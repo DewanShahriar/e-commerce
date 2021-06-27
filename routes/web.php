@@ -24,3 +24,6 @@ Route::get('/product-details', function () {
 Route::get('/admin', function () {
     return view('backend.dashboard');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
