@@ -55,7 +55,7 @@
             </a>
           </li> -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link <?php if($activeMenu == 'product') echo 'active';?>">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Product
