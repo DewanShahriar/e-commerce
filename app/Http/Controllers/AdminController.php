@@ -13,11 +13,17 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('backend.admin.dashboard');
+        $data['title']      = 'Dashboard';
+        $data['activeMenu'] = 'dashboard';
+
+        return view('backend.admin.dashboard', $data);
     }
 
     public function profile()
     {
-        return view('backend.admin.profile');
+        $data['title']      = 'Profile';
+        $data['activeMenu'] = 'profile';
+
+        return view('backend.admin.profile', $data);
     }
 }
