@@ -85,7 +85,7 @@ class AdminController extends Controller
             if($response)
             {
                 session()->flash('success','Successfully Update');
-                return redirect()->route('admin.profile')->with('success','Successfully Update');
+                return redirect()->route('admin.home')->with('success','Successfully Update');
             } else
             {
                 session()->flash('error_msg','Please select required informations');

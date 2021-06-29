@@ -311,7 +311,7 @@
                       <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Old Password</label>
                         <div class="col-sm-10">
-                          <input type="password" name="oldpassword" class="form-control" id="inputPassword" placeholder="Old Password">
+                          <input type="password" name="oldpassword" class="form-control" id="inputPassword" placeholder="Old Password" required>
                           @if(session()->has('error_msg'))
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{session()->get('error_msg')}}</strong>
@@ -323,7 +323,7 @@
                       <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">New Password</label>
                         <div class="col-sm-10">
-                          <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="inputNewpassword" placeholder="New Password">
+                          <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="inputNewpassword" placeholder="New Password" required>
                           @error('password')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -336,7 +336,7 @@
                       <div class="form-group row">
                         <label for="inputConfirmpassword" class="col-sm-2 col-form-label">Confirm Password</label>
                         <div class="col-sm-10">
-                          <input type="password" name="password_confirmation" class="form-control" id="inputConfirmpassword" placeholder="Confirm Password" value="{{$user_info->phone}}">
+                          <input type="password" name="password_confirmation" class="form-control" id="inputConfirmpassword" placeholder="Confirm Password" required>
                         </div>
                       </div>
                       
