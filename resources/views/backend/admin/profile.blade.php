@@ -11,27 +11,31 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{asset('/')}}assets/dist/img/user4-128x128.jpg"
+                       src="{{asset('/')}}{{$user_info->profile_photo}}"
                        alt="User profile picture">
                 </div>
 
                 <h3 class="profile-username text-center">{{$user_info->name}}</h3>
 
                 <p class="text-muted text-center">{{$user_info->role}}</p>
-                <div class="form-group">
-                    
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                <form class="form-horizontal" method="POST" action="{{ route('admin.profilephoto.update') }}" enctype="multipart/form-data">
+                    @csrf
+                  <div class="form-group">
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
+                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                          @error('profile_photo')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                        </div>
+                        
                       </div>
-                      
                     </div>
-                  </div>
-
-                
-
-                <a href="#" class="btn btn-primary btn-block"><b>Upload</b></a>
+                  <button type="submit" class="btn btn-primary btn-block"><b>Upload</b></button>
+                </form>
               </div>
               <!-- /.card-body -->
             </div>

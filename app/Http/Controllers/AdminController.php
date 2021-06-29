@@ -73,21 +73,16 @@ class AdminController extends Controller
          
         
         if(Hash::check($request->oldpassword, Auth::user()->password) ){
-            // echo "<pre>";
-            // print_r(Auth::user()->password);
-            // exit;
             $data = [
                 'password' => Hash::make($request->password),
             ];
             $response = DB::table('users')
                             ->where('id', $user_id)
                             ->update($data);
-            if($response)
-            {
+            if($response){
                 session()->flash('success','Successfully Update');
                 return redirect()->route('admin.home')->with('success','Successfully Update');
-            } else
-            {
+            } else{
                 session()->flash('error_msg','Please select required informations');
                 return redirect()->route('admin.profile')->with('error_msg','Error');
             }
@@ -98,4 +93,39 @@ class AdminController extends Controller
         
         
     }
+
+    public function profilePhotoUpdate(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+    
+        $imageName = time().'.'.$request->image->extension();
+         
+     
+        $request->image->move(public_path('assets/images'), $imageName);
+        $path = 'assets/images/'.$imageName;
+
+
+        // echo "<pre>";
+        // print_r($path);
+        // exit;
+  
+        /* Store $imageName name in DATABASE from HERE */
+        $data = [
+            'profile_photo' => $path,
+        ];
+
+        $response = DB::table('users')
+                        ->where('id', $user_id)
+                        ->update($data);
+    
+        return back()
+            ->with('success','You have successfully upload image.')
+            ->with('image',$imageName); 
+    }
+
+    
 }
