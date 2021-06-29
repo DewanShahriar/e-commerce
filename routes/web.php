@@ -32,3 +32,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //admin controller
 Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
 Route::get('admin/profile', [App\Http\Controllers\AdminController::class, 'profile'])->name('admin.profile');
+Route::post('admin/profile-update', [App\Http\Controllers\AdminController::class, 'profileUpdate'])->name('admin.profile.update');
+Route::post('admin/password-update', [App\Http\Controllers\AdminController::class, 'passwordUpdate'])->name('admin.password.update');
