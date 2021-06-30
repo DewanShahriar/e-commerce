@@ -54,11 +54,11 @@ class AdminController extends Controller
         if($response)
         {
             session()->flash('success','Successfully Update');
-            return redirect()->route('admin.profile')->with('success','Successfully Update');
+            return redirect()->route('admin.profile')->with('success','Successfully Updated');
         } else
         {
-            session()->flash('error_msg','Please select required informations');
-            return redirect()->route('admin.profile')->with('error_msg','Error');
+            session()->flash('warning','Please select required informations');
+            return redirect()->route('admin.profile')->with('warning','Nothing to Update');
         }
         
     }
@@ -81,7 +81,7 @@ class AdminController extends Controller
                             ->update($data);
             if($response){
                 session()->flash('success','Successfully Update');
-                return redirect()->route('admin.home')->with('success','Successfully Update');
+                return redirect()->route('admin.profile')->with('success','New Password Successfully Updated');
             } else{
                 session()->flash('error_msg','Please select required informations');
                 return redirect()->route('admin.profile')->with('error_msg','Error');
@@ -121,10 +121,16 @@ class AdminController extends Controller
         $response = DB::table('users')
                         ->where('id', $user_id)
                         ->update($data);
-    
-        return back()
+        if($response){
+            return back()
             ->with('success','You have successfully upload image.')
-            ->with('image',$imageName); 
+            ->with('image',$imageName);
+        } else {
+            return back()
+            ->with('error_msg','Upload Failed!!!')
+            ->with('image',$imageName);
+        }
+         
     }
 
     
