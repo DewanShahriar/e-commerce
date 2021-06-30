@@ -21,9 +21,7 @@ Route::get('/product-details', function () {
     return view('frontend.site.productDetails');
 });
 
-Route::get('/admin', function () {
-    return view('backend.dashboard');
-});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
