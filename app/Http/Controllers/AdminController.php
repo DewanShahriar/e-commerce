@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File; 
 use App\Models\User;
+use Image;
 use DB;
 
 class AdminController extends Controller
@@ -101,17 +104,34 @@ class AdminController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    
+
+        
+
+        $image = $request->file('image');
         $imageName = time().'.'.$request->image->extension();
-         
-     
-        $request->image->move(public_path('assets/images'), $imageName);
+        
+        $filePath = public_path('assets/images');
+        
         $path = 'assets/images/'.$imageName;
 
+        $img = Image::make($image->path());
+        $img->resize(128, 128);
+        $img->save($filePath.'/'.$imageName);
+
+        //$img->move($filePath, $imageName);
+
+        //$request->image->move(public_path('assets/images'), $imageName);
 
         // echo "<pre>";
         // print_r($path);
         // exit;
+        $user_info  = User::find($user_id);
+        $image_path = $user_info->profile_photo;
+        // delete previous profile photo
+        if (File::exists($image_path)) {
+            //File::delete($image_path);
+            unlink($image_path);
+        }
   
         /* Store $imageName name in DATABASE from HERE */
         $data = [
