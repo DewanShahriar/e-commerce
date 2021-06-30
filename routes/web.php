@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.site.index');
+    return redirect('site');
+    //return view('frontend.site.index');
 });
 
-Route::get('/product-details', function () {
-    return view('frontend.site.productDetails');
-});
 
+Route::get('/', [App\Http\Controllers\SiteController::class, 'index'])->name('site');
+Route::get('/product-details', [App\Http\Controllers\SiteController::class, 'productDetail'])->name('site.product.detail');
 
 Auth::routes();
 
