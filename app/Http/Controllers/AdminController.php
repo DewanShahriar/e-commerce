@@ -30,9 +30,7 @@ class AdminController extends Controller
     {
         $user_id = Auth::user()->id;
         $data['user_info'] = User::find($user_id);
-        // echo "<pre>";
-        // print_r($data['user_info']->name);
-        // exit;
+        
         $data['title']      = 'Profile';
         $data['activeMenu'] = 'profile';
 
@@ -109,13 +107,12 @@ class AdminController extends Controller
 
         $image = $request->file('image');
         $imageName = time().'.'.$request->image->extension();
-        
         $filePath = public_path('assets/images');
-        
         $path = 'assets/images/'.$imageName;
 
+        //resize image
         $img = Image::make($image->path());
-        $img->resize(128, 128);
+        $img->resize(400, 400);
         $img->save($filePath.'/'.$imageName);
 
         // delete previous profile photo
