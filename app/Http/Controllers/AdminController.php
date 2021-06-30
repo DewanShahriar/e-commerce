@@ -118,16 +118,9 @@ class AdminController extends Controller
         $img->resize(128, 128);
         $img->save($filePath.'/'.$imageName);
 
-        //$img->move($filePath, $imageName);
-
-        //$request->image->move(public_path('assets/images'), $imageName);
-
-        // echo "<pre>";
-        // print_r($path);
-        // exit;
+        // delete previous profile photo
         $user_info  = User::find($user_id);
         $image_path = $user_info->profile_photo;
-        // delete previous profile photo
         if (File::exists($image_path)) {
             //File::delete($image_path);
             unlink($image_path);
