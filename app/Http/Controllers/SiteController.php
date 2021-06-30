@@ -16,7 +16,7 @@ class SiteController extends Controller
         return view('frontend.site.index');
     }
 
-    public function productDetail()
+    public function productDetail($id)
     {
         return view('frontend.site.productDetails');
     }
