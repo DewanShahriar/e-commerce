@@ -18,6 +18,6 @@ class SiteController extends Controller
 
     public function productDetail()
     {
-        return view('frontend.site.productDetails');
+        return view('frontend.site.productDetail');
     }
 }

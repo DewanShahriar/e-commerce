@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 
 Route::get('/', [App\Http\Controllers\SiteController::class, 'index'])->name('site');
-Route::get('/product-details', [App\Http\Controllers\SiteController::class, 'productDetail'])->name('site.product.detail');
+Route::get('/product-detail', [App\Http\Controllers\SiteController::class, 'productDetail'])->name('site.product.detail');
 
 Auth::routes();
 
