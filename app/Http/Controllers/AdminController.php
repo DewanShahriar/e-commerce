@@ -112,7 +112,7 @@ class AdminController extends Controller
 
         //resize image
         $img = Image::make($image->path());
-        $img->resize(400, 400);
+        $img->resize(300, 300);
         $img->save($filePath.'/'.$imageName);
 
         // delete previous profile photo
